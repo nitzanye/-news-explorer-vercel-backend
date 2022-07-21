@@ -1,19 +1,27 @@
 const express = require('express');
+const helmet = require('helmet');
+
+require('dotenv').config();
 
 const app = express();
+const bodyParser = require('body-parser');
+
+const mongoose = require('mongoose');
+const cors = require('cors');
+const { errors } = require('celebrate');
+const { database } = require('./utils/configuration');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const serverErrorHandler = require('./middlewares/server-error-handler');
+const limiter = require('./utils/rate-limiter');
+const { pageNotFound } = require('./controllers/page-not-found');
+
+const { PORT = 3000, NODE_ENV, MONGO_URL } = process.env;
+mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : database);
 
 // const mongoose with new project
 // mongoose.connect('mongodb://localhost:27017/news-explorer', {
 //   useNewUrlParser: true,
 // });
-
-const helmet = require('helmet');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { errors } = require('celebrate');
-
-const mongoose = require('mongoose');
-const { database } = require('./utils/configuration');
 
 // const { PORT = 3000 } = process.env;
 
@@ -21,23 +29,11 @@ const { database } = require('./utils/configuration');
 //   useNewUrlParser: true,
 // });
 
-const { PORT = 3000, NODE_ENV, MONGO_URL } = process.env;
-mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : database);
-
 // app.use(express.json());
 app.use(bodyParser.json());
 
-require('dotenv').config();
-
-const limiter = require('./utils/rate-limiter');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
-const serverErrorHandler = require('./middlewares/server-error-handler');
-const { createUser, login } = require('./controllers/users');
-const { validateUser, validateLogin } = require('./middlewares/validations');
-const auth = require('./middlewares/auth');
-const { pageNotFound } = require('./controllers/page-not-found');
-const userRouter = require('./routes/users');
-const articlesRouter = require('./routes/articles');
+// routes
+const mainRoute = require('./routes/index');
 
 app.use(requestLogger);
 app.use(limiter);
@@ -56,19 +52,8 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-// register
-// creates a user with the passed email, password, and name in the body
-app.post('/signup', validateUser, createUser);
-
-// login
-// checks the email and password passed in the body and returns a JWT
-app.post('/signin', validateLogin, login);
-
-// authorization (the two routes above, don't need to be protected by authorization.)
-app.use(auth);
-
-app.use('/', userRouter);
-app.use('/', articlesRouter);
+// routing
+app.use('/', mainRoute);
 
 // must come after the route handlers and before the error handlers
 app.use(errorLogger);
@@ -84,3 +69,23 @@ app.use('*', pageNotFound);
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
+
+// const { createUser, login } = require('./controllers/users');
+// const { validateUser, validateLogin } = require('./middlewares/validations');
+// const auth = require('./middlewares/auth');
+// const userRouter = require('./routes/users');
+// const articlesRouter = require('./routes/articles');
+
+// // register
+// // creates a user with the passed email, password, and name in the body
+// app.post('/signup', validateUser, createUser);
+
+// // login
+// // checks the email and password passed in the body and returns a JWT
+// app.post('/signin', validateLogin, login);
+
+// // authorization (the two routes above, don't need to be protected by authorization.)
+// app.use(auth);
+
+// app.use('/', userRouter);
+// app.use('/', articlesRouter);
