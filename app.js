@@ -69,23 +69,3 @@ app.use('*', pageNotFound);
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
-
-// const { createUser, login } = require('./controllers/users');
-// const { validateUser, validateLogin } = require('./middlewares/validations');
-// const auth = require('./middlewares/auth');
-// const userRouter = require('./routes/users');
-// const articlesRouter = require('./routes/articles');
-
-// // register
-// // creates a user with the passed email, password, and name in the body
-// app.post('/signup', validateUser, createUser);
-
-// // login
-// // checks the email and password passed in the body and returns a JWT
-// app.post('/signin', validateLogin, login);
-
-// // authorization (the two routes above, don't need to be protected by authorization.)
-// app.use(auth);
-
-// app.use('/', userRouter);
-// app.use('/', articlesRouter);
