@@ -3,6 +3,7 @@
     "airbnb-base"
   ],
   "rules": {
+    "quotes": ["error", "double"],
     "no-underscore-dangle": [
       "error",
       {

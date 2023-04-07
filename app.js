@@ -3,6 +3,7 @@ const helmet = require("helmet");
 
 require("dotenv").config();
 require("./db");
+
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
