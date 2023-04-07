@@ -17,6 +17,7 @@
       {
         "argsIgnorePattern": "next"
       }
-    ]
+    ],
+    "comma-dangle": 0
   }
 }
