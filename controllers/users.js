@@ -2,12 +2,12 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { SUCCESS_OK } = require("../utils/constants");
-// const { privateKey } = require('../utils/configuration');
+const { privateKey } = require("../utils/configuration");
 const NotFoundError = require("../errors/not-found-error");
 const InvalidDataError = require("../errors/invalid-data-error");
 const ConflictError = require("../errors/conflict-error");
 
-const privateKey = "some-secret-key";
+// const privateKey = "some-secret-key";
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 const SALT_ROUNDS = 10;
