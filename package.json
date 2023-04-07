@@ -1,5 +1,5 @@
 {
-  "name": "news-explorer-api",
+  "name": "news-explorer-vercel-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nitzanye/news-explorer-api.git"
+    "url": "https://github.com/nitzanye/news-explorer-vercel-backend.git"
   },
   "author": "\"Nitzan Smulevici\"",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nitzanye/news-explorer-api/issues"
+    "url": " https://github.com/nitzanye/news-explorer-vercel-backend/issues"
   },
-  "homepage": "https://github.com/nitzanye/news-explorer-api#readme",
+  "homepage": "https://github.com/nitzanye/news-explorer-vercel-backend#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
