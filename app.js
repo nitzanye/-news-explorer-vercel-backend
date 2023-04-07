@@ -10,7 +10,7 @@ const { errors } = require("celebrate");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const serverErrorHandler = require("./middlewares/server-error-handler");
 const limiter = require("./utils/rate-limiter");
-const { pageNotFound } = require("./controllers/page-not-found");
+// const { pageNotFound } = require("./controllers/page-not-found");
 
 app.use(bodyParser.json());
 const { PORT = 3000 } = process.env;
