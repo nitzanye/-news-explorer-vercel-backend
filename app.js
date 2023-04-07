@@ -28,7 +28,7 @@ app.use(errorLogger);
 app.use(errors());
 app.use(serverErrorHandler);
 
-app.use("*", pageNotFound);
+// app.use("*", pageNotFound);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
