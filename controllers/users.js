@@ -7,8 +7,6 @@ const NotFoundError = require("../errors/not-found-error");
 const InvalidDataError = require("../errors/invalid-data-error");
 const ConflictError = require("../errors/conflict-error");
 
-// const privateKey = "some-secret-key";
-
 const { NODE_ENV, JWT_SECRET } = process.env;
 const SALT_ROUNDS = 10;
 
