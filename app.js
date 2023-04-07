@@ -5,22 +5,15 @@ require("dotenv").config();
 require("./db");
 const app = express();
 const bodyParser = require("body-parser");
-// const mongoose = require("mongoose");
 const cors = require("cors");
 const { errors } = require("celebrate");
-// const { database } = require("./utils/configuration");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const serverErrorHandler = require("./middlewares/server-error-handler");
 const limiter = require("./utils/rate-limiter");
 const { pageNotFound } = require("./controllers/page-not-found");
 
-// const { PORT = 3000, NODE_ENV, MONGO_URL } = process.env;
-// mongoose.connect(NODE_ENV === "production" ? MONGO_URL : database);
-
 app.use(bodyParser.json());
-
 const { PORT = 3000 } = process.env;
-
 const mainRoute = require("./routes/index");
 
 app.use(requestLogger);
