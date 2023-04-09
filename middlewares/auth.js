@@ -5,7 +5,6 @@ const UnauthorizedError = require("../errors/unauthorized-error");
 const { privateKey } = require("../utils/configuration");
 
 const auth = (req, res, next) => {
-  // getting authorization from the header
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith("Bearer ")) {
     return next(new UnauthorizedError("You are not authorized"));

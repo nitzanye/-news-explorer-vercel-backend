@@ -18,6 +18,12 @@
         "argsIgnorePattern": "next"
       }
     ],
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "object-curly-newline": [
+      "error",
+      {
+        "multiline": "always"
+      }
+    ]
   }
 }

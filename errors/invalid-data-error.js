@@ -1,4 +1,4 @@
-const { ERROR_INVALID_DATA } = require('../utils/constants');
+const { ERROR_INVALID_DATA } = require("../utils/constants");
 
 class InvalidDataError extends Error {
   constructor(message) {
