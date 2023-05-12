@@ -12,7 +12,7 @@ The API of "News Explorer" with authorization, registration and article saving h
 
 -	Mongoose
 -	Express
--	Microsoft Azure
+-	Vercel
 -	Celebrate
 -	Validator
 -	Dotenv
